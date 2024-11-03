@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blog</title>
+</head>
+<style>
+
+    body { 
+      margin: 1em;
+      font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    }
+
+    .container {
+      /* I have to google this... */
+      width: 700px;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    hr {
+      color: grey;
+    }
+    
+    br {
+      user-select: none;
+    }
+    
+    .post-container {
+        line-height: 1.5em;
+    }
+</style>
+<body>
+    <div class="container">
+        <h1>{{data['title']}}</h1>
+        <p style="color:grey"><i>{{data['date']}}</i></p>
+        <hr>
+        <div class="post-container">
+            {{data['content']|safe}}
+        </div>
+    </div>
+
+    <center>
+        <h1><a href="javascript:history.back()">back</a></h1>
+    </center>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+    body { 
+      margin: 1em;
+      font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    }
+
+    .container {
+      /* I have to google this... */
+      width: 700px;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    #date {
+        margin-block-start: 0.1em;
+        color: grey;
+    }
+
+    .post-container h2 {
+        margin-block-end: 0.3em;
+    }
+
+    hr {
+      color: grey;
+    }
+    
+    br {
+      user-select: none;
+    }
+ 
+</style>
+<body>
+    <div class="container">
+        <h1>posts</h1>
+        <hr>
+        {% if data|length == 0%}
+        <p>check back later!</p>
+        {% endif %}
+        {% for data in data %}
+        <div class="post-container">
+            <h2><a href="/post/{{data['id']}}">{{data['title']}}</a></h2>
+            <p><span id="date">{{data['date']}}</span> {{data['description']}}...</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <center>
+        {% if data|length > 4 %}
+            {% if number == 1 %}
+            <h1><a href="/page/2">></a></h1>
+            {% else %}
+            <h1>{% if number == 2 %}<a href="/"><</a>{% else %}<a href="/page/{{number - 1}}"><</a>{% endif %} {% if data|length == 5 %}<a href="/page/{{number + 1}}">></a>{% endif %}</h1>
+            {% endif %}
+        {% endif %}
+    </center>
+</body>
+</html>

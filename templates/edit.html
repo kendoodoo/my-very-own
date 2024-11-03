@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>edit</title>
+</head>
+<style>
+
+    body { 
+      margin: 1em;
+      font-family: -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+    }
+
+    .container {
+      /* I have to google this... */
+      width: 700px;
+      margin: 0 auto;
+      max-width: 100%;
+    }
+
+    .post-container p {
+        margin-block-start: 0.1em;
+        color: grey;
+    }
+
+    .post-container h2 {
+        margin-block-end: 0.3em;
+    }
+
+    hr {
+      color: grey;
+    }
+    
+    br {
+      user-select: none;
+    }
+    
+</style>
+<body>
+    <div class="container">
+        <h1>edit post!</h1>
+        <hr>
+        <form action="/edit/{{data['id']}}" method="post">
+            <input type="text" name="title" placeholder="title" value="{{data['title']}}" style="width: 100%;height: 30px; font-size: 25px;" required><br><br>
+            <input type="text" name="description" placeholder="description" value="{{data['description']}}" style="width: 100%;" maxlength="150"><br><br>
+            <textarea id="post" name="content" style="width: 100%;height: 500px;line-height:1.3em;" required>{{data['original-content']}}</textarea>
+            <br><br>
+            <center>
+                <input type="submit" value="edit">
+            </center>
+        </form>
+    </div>
+</body>
+<script>
+  window.addEventListener("beforeunload", (e) => {
+      if (document.getElementById('post').value != "") {
+          e.preventDefault();
+      }
+  });
+</script>
+</html>
